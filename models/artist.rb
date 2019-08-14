@@ -27,6 +27,15 @@ class Artist
     artists = SqlRunner.run(sql)
     return artists.map { |artist| Artist.new(artist)}
   end
+# find albums by artist:
+  def pizza_orders
+    sql = "SELECT * FROM pizza_orders WHERE customer_id = $1"
+    values = [@id]
+    orders_data = SqlRunner.run(sql, values)
+    orders = orders_data.map { |orders_data| PizzaOrder.new(orders_data)}
+    return orders
+  end
+
 
 
 end
